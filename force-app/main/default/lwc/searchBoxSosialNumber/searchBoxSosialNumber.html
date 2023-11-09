@@ -1,0 +1,30 @@
+<!-- searchBoxSocialNumber.html -->
+<template>
+    <lightning-card title="Search Social Number" icon-name="standard:account">
+        <div class="slds-var-m-around_medium">
+            <lightning-input
+                type="search"
+                label="Enter Customer Social Number"
+                onchange={searchHandler}>
+            </lightning-input>
+            <div class="slds-var-m-top_small">
+                <strong>Search Result:</strong><br>
+                <template if:true={Socials}>
+                    <template for:each={Socials} for:item="soc">
+                        <div key={soc.Id} class="slds-box slds-var-m-bottom_small" data-recordid={soc.Id} onclick={handleSocClick}>
+                            Please Click to go record page <br/>
+                            <strong style="text-decoration: underline;">Sosical Number is = {soc.Social_Security_Number__c}</strong><br/>
+                            Customer Name : {soc.First_Name__c} <br/>
+                            Customer Birth Date : {soc.Birth_Date__c}
+                        </div>
+                    </template>
+                </template>
+                
+                <template if:true={error}>
+                    <strong>Search Error:</strong><br/>
+                    {error}
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>
